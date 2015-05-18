@@ -1,6 +1,7 @@
 What does it mean for two sets to be disjoint?
 
-
+The two sets have nothing in common. There is no shared data points.
 
 What is the union of two sets?
 
+The union of two sets is a set containing all of the things from both sets. 
