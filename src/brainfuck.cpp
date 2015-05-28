@@ -106,17 +106,33 @@ class Program : public Container {
  * Modify as necessary and add whatever functions you need to get things done.
  */
 void parse(fstream & file, Container * container) {
+    // char c;
+    // // How to peek at the next character
+    // c = (char)file.peek();
+    // // How to print out that character
+    // cout << c;
+    // // How to read a character from the file and advance to the next character
+    // file >> c;
+    // // How to print out that character
+    // cout << c;
+    // // How to insert a node into the container.
+    // container->children.push_back(new CommandNode(c));
+    Loop* loop = new Loop();
     char c;
-    // How to peek at the next character
-    c = (char)file.peek();
-    // How to print out that character
-    cout << c;
-    // How to read a character from the file and advance to the next character
-    file >> c;
-    // How to print out that character
-    cout << c;
-    // How to insert a node into the container.
-    container->children.push_back(new CommandNode(c));
+    if(file.get(c)){
+        if(c == '['){
+            parse(file, loop);
+            container->children.push_back(loop);
+        }else if (c == ']'){
+            return;
+        }else{
+            container->children.push_back(new CommandNode(c));
+        }
+        if(!file.eof()){
+            parse(file, container);
+        }
+        return;
+    }
 }
 
 /**
